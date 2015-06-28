@@ -81,3 +81,5 @@ source $ZSH/oh-my-zsh.sh
 source .aliases
 source .functions
 source .extra
+# eject windows hdd
+diskutil eject disk1
