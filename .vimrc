@@ -105,7 +105,7 @@ if has("autocmd")
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
 
-# close all buffers and exit (normal mode)
+" close all buffers and exit (normal mode)
 
 nmap <C-x> :qall!<cr>
 
