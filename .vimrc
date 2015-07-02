@@ -104,3 +104,11 @@ if has("autocmd")
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+# close all buffers and exit (normal mode)
+nmap <C-x> :qall!<cr>
+nmap <C-w> :wq<cr>
+menu Encoding.utf-8 :e ++enc=utf8 <CR>
+menu Encoding.windows-1251 :e ++enc=cp1251 <CR>
+
+map <F10> :emenu Encoding.<TAB>
