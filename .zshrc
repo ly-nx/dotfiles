@@ -81,5 +81,8 @@ source $ZSH/oh-my-zsh.sh
 source .aliases
 source .functions
 source .extra
+# edit command line vi-style
+bindkey -v
+zle -N zle-line-init
 # eject windows hdd
 diskutil eject disk1
