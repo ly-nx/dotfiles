@@ -85,4 +85,4 @@ source .extra
 bindkey -v
 zle -N zle-line-init
 # eject windows hdd
-diskutil eject disk1
+diskutil eject disk1 &> /dev/null
