@@ -86,3 +86,5 @@ bindkey -v
 zle -N zle-line-init
 # eject windows hdd
 diskutil eject disk1 &> /dev/null
+#
+export PIP_REQUIRE_VIRTUALENV=true
