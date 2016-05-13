@@ -88,3 +88,4 @@ zle -N zle-line-init
 diskutil eject disk1 &> /dev/null
 #
 export PIP_REQUIRE_VIRTUALENV=true
+compdef gpg2=gpg
