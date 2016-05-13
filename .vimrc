@@ -113,3 +113,12 @@ menu Encoding.utf-8 :e ++enc=utf8 <CR>
 menu Encoding.windows-1251 :e ++enc=cp1251 <CR>
 
 map <F10> :emenu Encoding.<TAB>
+
+if has('win32')
+    set guifont=Consolas:h12   " Win32.
+elseif has('gui_macvim')
+    set guifont=Monaco:h10     " OSX.
+    set lsp=2
+else
+    set guifont=Monospace\ 12  " Linux.
+endif
