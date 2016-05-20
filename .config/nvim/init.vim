@@ -14,8 +14,6 @@ set backspace=indent,eol,start
 set ttyfast
 " Add the g flag to search/replace by default
 set gdefault
-" Use UTF-8 without BOM
-set encoding=utf-8 nobomb
 " Change mapleader
 let mapleader=" "
 " Don’t add empty newlines at the end of files
@@ -25,7 +23,7 @@ set noeol
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 if exists("&undodir")
-	set undodir=~/.vim/undo
+    set undodir=~/.vim/undo
 endif
 
 set ttimeoutlen=50
@@ -72,25 +70,36 @@ set showmode
 set title
 " Show the (partial) command as it’s being typed
 set showcmd
+autocmd CursorHold,CursorHoldI *.rb,*.js Neomake
 " Use relative line numbers
 if exists("&relativenumber")
-	set relativenumber
-	au BufReadPost * set relativenumber
+    set relativenumber
+    au BufReadPost * set relativenumber
 endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
-	let save_cursor = getpos(".")
-	let old_query = getreg('/')
-	:%s/\s\+$//e
-	call setpos('.', save_cursor)
-	call setreg('/', old_query)
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    :%s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
 endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
+
+" sets search register, so highlight works only if hlsearch is on
+function! HighlightUsages()
+  let @/ = '\V\<'.escape(expand('<cword>'), '\').'\>'
+endfunction
+
+" highligh word under cursor
+nmap <Leader>h :call HighlightUsages()<cr>:set hls<cr>
+" nohls
+nmap <Leader>nh :set nohls<cr>
 
 " Automatic commands
 if has("autocmd")
@@ -102,8 +111,14 @@ if has("autocmd")
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
 
-" close all buffers and exit (normal mode)
+" disable yaml and text autoindent
+autocmd BufEnter * if &filetype == "yaml" | setlocal nosi inde= | endif
+autocmd BufEnter * if &filetype == "text" | setlocal nosi inde= | endif
+" Check syntax on save and when opening file
+autocmd BufReadPost,BufWritePost *.py,*.rb,*.js Neomake
 
+" auto save and link on exit from insert mode
+" close all buffers and exit (normal mode)
 nmap <C-x> :qall!<cr>
 
 menu Encoding.utf-8 :e ++enc=utf8 <CR>
@@ -128,7 +143,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
 Plug 'benekastah/neomake'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-abolish'
@@ -142,21 +156,15 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
-
+Plug 'scrooloose/nerdtree'
 Plug 'nvie/vim-flake8'
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 call plug#end()
 
 colorscheme gruvbox
 
 set splitbelow
 set splitright
-
-"split navigations
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 set showmatch
 set showmode    "show current mode down the bottom
@@ -213,12 +221,31 @@ syntax sync minlines=256
 
 set grepprg=ag\ -S\ --nogroup\ --nocolor\ --skip-vcs-ignores\ --hidden\ --vimgrep
 set grepformat=%f:%l:%c:%m
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|copen|redraw!
+" searches for the text under the cursor and shows the results in a quickfix window
+nnoremap \ :silent grep! "\b<C-R>=expand("<cword>")<cr>\b"<CR>:cw<CR>:redraw!<cr>
+vnoremap \ "hy:silent grep! "\b<C-r>h\b"<CR>:cw<CR>:redraw!<cr>
 
 set wildignore+=*.o,*.obj,*/.sass-cache/*
 
 " disable visualbell completely
 set visualbell
 set t_vb=
+
+map <F9> :NERDTreeToggle<CR>
+let g:NERDTreeWinSize=40
+let g:NERDTreeShowHidden=1
+let g:NERDTreeAutoDeleteBuffer=1
+let g:NERDSpaceDelims=1
+let g:NERDRemoveExtraSpaces = 1
+let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeSortHiddenFirst=1
+let g:NERDTreeShowLineNumbers=1
+let g:NERDTreeMinimalUI=1
+let g:NERDTreeDirArrows=1
+let g:NERDTreeAutoDeleteBuffer=1
+let g:NERDTreeMapCWD=""
+let g:NERDTreeCascadeOpenSingleChildDir=0
 
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
@@ -259,6 +286,9 @@ let g:gitgutter_realtime=1
 let g:gitgutter_map_keys=0
 let g:gitgutter_sign_column_always= 1
 
+let g:gruvbox_invert_selection=0
+let g:gruvbox_bold=0
+
 " airline config
 let g:airline_section_b=0
 
@@ -283,7 +313,52 @@ let g:neomake_warning_sign = {
 let g:neomake_verbose=0
 let g:neomake_place_all_signs=1
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:neomake_python_enabled_makers = ['flake8', 'pyflakes', 'pylint']
+"let g:syntastic_python_checkers = ['flake8', 'pyflakes', 'pylint']
+"let g:syntastic_aggregate_errors = 1
+
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+
+let g:deoplete#enable_at_startup = 1
+
+" replace selected text
+vnoremap <leader>r "hy:%s/<C-r>h//gc<left><left><left>
+
+nmap <Leader>b :CtrlPBuffer<cr>
+
+" different cursors for normal and insert mode
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+let g:terminal_color_0 = "#282828"
+let g:terminal_color_8 = "#928374"
+
+" neurtral_red + bright_red
+let g:terminal_color_1 = "#cc241d"
+let g:terminal_color_9 = "#fb4934"
+
+" neutral_green + bright_green
+let g:terminal_color_2 = "#98971a"
+let g:terminal_color_10 = "#b8bb26"
+
+" neutral_yellow + bright_yellow
+let g:terminal_color_3 = "#d79921"
+let g:terminal_color_11 = "#fabd2f"
+
+" neutral_blue + bright_blue
+let g:terminal_color_4 = "#458588"
+let g:terminal_color_12 = "#83a598"
+
+" neutral_purple + bright_purple
+let g:terminal_color_5 = "#b16286"
+let g:terminal_color_13 = "#d3869b"
+
+" neutral_aqua + faded_aqua
+let g:terminal_color_6 = "#689d6a"
+let g:terminal_color_14 = "#8ec07c"
+
+" light4 + light1
+let g:terminal_color_7 = "#a89984"
+let g:terminal_color_15 = "#ebdbb2"

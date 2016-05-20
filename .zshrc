@@ -45,7 +45,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git,brew,docker,docker-compose)
 
 # User configuration
 
@@ -78,9 +78,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source .aliases
-source .functions
-source .extra
+source $HOME/.aliases
+source $HOME/.functions
+source $HOME/.extra
 # edit command line vi-style
 bindkey -v
 zle -N zle-line-init
@@ -88,6 +88,7 @@ zle -N zle-line-init
 diskutil eject disk1 &> /dev/null
 #
 export PIP_REQUIRE_VIRTUALENV=true
+# GPG stuff
 compdef gpg2=gpg
 if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
     source ~/.gnupg/.gpg-agent-info
@@ -96,3 +97,6 @@ else
     eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
 fi
 export GPG_TTY=`tty`
+# tmux > 2.1
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+

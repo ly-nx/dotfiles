@@ -95,7 +95,6 @@ brew install vbindiff
 brew install webkit2png
 brew install zopfli
 brew install reattach-to-user-namespace
-brew install macvim
 brew install tmux
 brew cask install iterm2
 
