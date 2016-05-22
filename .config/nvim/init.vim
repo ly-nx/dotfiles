@@ -103,12 +103,12 @@ nmap <Leader>nh :set nohls<cr>
 
 " Automatic commands
 if has("autocmd")
-	" Enable file type detection
-	filetype on
-	" Treat .json files as .js
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-	" Treat .md files as Markdown
-	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+    " Enable file type detection
+    filetype on
+    " Treat .json files as .js
+    autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+    " Treat .md files as Markdown
+    autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
 
 " disable yaml and text autoindent
@@ -130,9 +130,8 @@ if has('win32')
     set guifont=Consolas:h12   " Win32.
 elseif has('gui_macvim')
     set guifont=Monaco:h10     " OSX.
-    set lsp=2
 else
-    set guifont=Monospace\ 12  " Linux.
+    set guifont=Monospace\ 10  " Linux.
 endif
 
 call plug#begin("~/.config/nvim/bundle")
@@ -290,7 +289,24 @@ let g:gruvbox_invert_selection=0
 let g:gruvbox_bold=0
 
 " airline config
-let g:airline_section_b=0
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
 
 let g:airline_theme_patch_func = 'AirlineThemePatch'
 function! AirlineThemePatch(palette)
@@ -300,6 +316,12 @@ function! AirlineThemePatch(palette)
     endfor
   endif
 endfunction
+
+" let g:airline_enable_syntastic=1
+" show name of branch
+let g:airline_enable_fugitive=1
+" do not show the number of changed lines
+let g:airline#extensions#hunks#enabled = 0
 
 let g:neomake_error_sign = {
             \ 'text': '►',
@@ -316,7 +338,6 @@ let g:neomake_place_all_signs=1
 let g:neomake_python_enabled_makers = ['flake8', 'pyflakes', 'pylint']
 "let g:syntastic_python_checkers = ['flake8', 'pyflakes', 'pylint']
 "let g:syntastic_aggregate_errors = 1
-
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
