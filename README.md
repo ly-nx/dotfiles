@@ -1,13 +1,17 @@
 # dotfiles
 
-Configuration files for my lenovo x220 hackintosh running OS X 10.10.3.
+Configuration files for my lenovo x220 laptop hackintosh running latest OS X.
 
 ~~All glory for the Hypnotoad.~~ Thanks Mathias and others. 
 
 ## originally forked from 
 
 [dotfiles](https://github.com/mathiasbynens/dotfiles)!
- 
+
+## additional thanks to Ivan
+
+[dotfiles](https://github.com/ivalkeen/dotfiles)
+
 ## Feedback
 
 Suggestions/improvements
