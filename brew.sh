@@ -103,6 +103,7 @@ brew install zopfli
 brew install reattach-to-user-namespace
 brew install tmux
 brew cask install iterm2
+brew install node
 
 # Remove outdated versions from the cellar.
 brew cleanup

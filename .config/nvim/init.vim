@@ -70,7 +70,6 @@ set showmode
 set title
 " Show the (partial) command as it’s being typed
 set showcmd
-autocmd CursorHold,CursorHoldI *.rb,*.js Neomake
 " Use relative line numbers
 if exists("&relativenumber")
     set relativenumber
@@ -115,6 +114,8 @@ endif
 autocmd BufEnter * if &filetype == "yaml" | setlocal nosi inde= | endif
 autocmd BufEnter * if &filetype == "text" | setlocal nosi inde= | endif
 " Check syntax on save and when opening file
+
+autocmd CursorHold,CursorHoldI *.py,*.rb,*.js Neomake
 autocmd BufReadPost,BufWritePost *.py,*.rb,*.js Neomake
 
 " auto save and link on exit from insert mode
@@ -157,6 +158,11 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdtree'
 Plug 'nvie/vim-flake8'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'rizzatti/dash.vim'
+
 "Plug 'scrooloose/syntastic'
 call plug#end()
 
@@ -232,6 +238,19 @@ set visualbell
 set t_vb=
 
 map <F9> :NERDTreeToggle<CR>
+
+" show documentation in Dash
+nmap <leader>d <Plug>DashSearch
+nmap <leader>D <Plug>DashGlobalSearch
+
+
+let g:dash_map = {
+      \ 'haml' : ['rails']
+      \ }
+
+let g:multi_cursor_exit_from_visual_mode=0
+let g:multi_cursor_exit_from_insert_mode=0
+
 let g:NERDTreeWinSize=40
 let g:NERDTreeShowHidden=1
 let g:NERDTreeAutoDeleteBuffer=1
@@ -272,7 +291,7 @@ let g:ctrlp_prompt_mappings = {
       \ }
 
 let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\.git$\|\.hg$\|\.svn$\|vendor\/\(j\?ruby\|rbx\)\|vendor',
+      \ 'dir':  '\.hg$\|\.svn$\|vendor\/\(j\?ruby\|rbx\)\|vendor|\.(git|env)$',
       \ 'file': '\.exe$\|\.so$\|\.dll$',
       \ 'link': 'bad_symbolic_link',
       \ }
@@ -335,7 +354,13 @@ let g:neomake_warning_sign = {
 let g:neomake_verbose=0
 let g:neomake_place_all_signs=1
 
-let g:neomake_python_enabled_makers = ['flake8', 'pyflakes', 'pylint']
+"let g:neomake_python_enabled_makers = ['flake8', 'pyflakes', 'pylint']
+let g:neomake_python_enabled_makers = ['flake8']
+let g:neomake_javascript_enabled_makers=['eslint']
+
+hi NeomakeError   ctermbg=237 guibg=#3c3836 ctermfg=167 guifg=#fb4934
+hi NeomakeWarning ctermbg=237 guibg=#3c3836 ctermfg=172 guifg=#d79921
+
 "let g:syntastic_python_checkers = ['flake8', 'pyflakes', 'pylint']
 "let g:syntastic_aggregate_errors = 1
 "let g:syntastic_always_populate_loc_list = 1
@@ -345,13 +370,31 @@ let g:neomake_python_enabled_makers = ['flake8', 'pyflakes', 'pylint']
 
 let g:deoplete#enable_at_startup = 1
 
+" jsx also with .js files
+let g:jsx_ext_required = 0
+
 " replace selected text
 vnoremap <leader>r "hy:%s/<C-r>h//gc<left><left><left>
 
 nmap <Leader>b :CtrlPBuffer<cr>
 
+" searches for the text under the cursor and shows the results in a quickfix window
+nnoremap K :silent grep! "\b<C-R>=expand("<cword>")<cr>\b"<CR>:cw<CR>:redraw!<cr>
+vnoremap K "hy:silent grep! "\b<C-r>h\b"<CR>:cw<CR>:redraw!<cr>
+
 " different cursors for normal and insert mode
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+" vim-indent-guides
+let g:indent_guides_auto_colors=0
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_default_mapping=0
+let g:indent_guides_guide_size=1
+let g:indent_guides_start_level=2
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'text']
+
+hi IndentGuidesOdd  ctermbg=236 guibg=#333333
+hi IndentGuidesEven ctermbg=236 guibg=#363636
 
 let g:terminal_color_0 = "#282828"
 let g:terminal_color_8 = "#928374"
