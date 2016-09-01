@@ -70,6 +70,9 @@ set showmode
 set title
 " Show the (partial) command as it’s being typed
 set showcmd
+" remap jk as esc
+:inoremap jk <esc>
+
 autocmd CursorHold,CursorHoldI *.rb,*.js Neomake
 " Use relative line numbers
 if exists("&relativenumber")

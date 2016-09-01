@@ -99,4 +99,9 @@ fi
 export GPG_TTY=`tty`
 # tmux > 2.1
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
-
+#
+export EDITOR=/usr/local/bin/nvim
+#
+# bind vim-like command keys
+bindkey -M viins 'jk' vi-cmd-mode
+bindkey '^R' history-incremental-search-backward
