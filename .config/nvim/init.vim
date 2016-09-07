@@ -78,6 +78,8 @@ endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
+" remap jk as esc
+:inoremap jk <esc>
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
     let save_cursor = getpos(".")
@@ -139,6 +141,7 @@ call plug#begin("~/.config/nvim/bundle")
 
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Shougo/deoplete.nvim'
+Plug 'zchee/deoplete-jedi'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -290,10 +293,11 @@ let g:ctrlp_prompt_mappings = {
       \ 'PrtHistory(-1)':        ['<down>'],
       \ }
 
+" see .agignore
 let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\.hg$\|\.svn$\|vendor\/\(j\?ruby\|rbx\)\|vendor|\.(git|env)$',
-      \ 'file': '\.exe$\|\.so$\|\.dll$',
-      \ 'link': 'bad_symbolic_link',
+      \ 'dir':  '',
+      \ 'file': '',
+      \ 'link': '',
       \ }
 
 let g:ctrlp_tjump_shortener = ['^/.*rbenv/versions/\d.\d.\d.*/lib/ruby/\(gems/\)\?\d.\d.\d/\|/.*/vendor/ruby/\d.\d.\d/', '.../']
@@ -369,6 +373,11 @@ hi NeomakeWarning ctermbg=237 guibg=#3c3836 ctermfg=172 guifg=#d79921
 "let g:syntastic_check_on_wq = 0
 
 let g:deoplete#enable_at_startup = 1
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 " jsx also with .js files
 let g:jsx_ext_required = 0
