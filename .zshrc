@@ -105,3 +105,6 @@ export EDITOR=/usr/local/bin/nvim
 # bind vim-like command keys
 bindkey -M viins 'jk' vi-cmd-mode
 bindkey '^R' history-incremental-search-backward
+#
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
