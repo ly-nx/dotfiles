@@ -243,8 +243,8 @@ set t_vb=
 map <F9> :NERDTreeToggle<CR>
 
 " show documentation in Dash
-nmap <leader>d <Plug>DashSearch
-nmap <leader>D <Plug>DashGlobalSearch
+" nmap <leader>d <Plug>DashSearch
+" nmap <leader>D <Plug>DashGlobalSearch
 
 
 let g:dash_map = {
