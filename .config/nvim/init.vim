@@ -243,8 +243,8 @@ set t_vb=
 map <F9> :NERDTreeToggle<CR>
 
 " show documentation in Dash
-" nmap <leader>d <Plug>DashSearch
-" nmap <leader>D <Plug>DashGlobalSearch
+nmap <leader>d <Plug>DashSearch
+nmap <leader>D <Plug>DashGlobalSearch
 
 
 let g:dash_map = {
@@ -376,8 +376,8 @@ let g:deoplete#enable_at_startup = 1
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-let g:python_host_prog = '/usr/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog = '/Users/lynx/.config/nvim/env2/bin/python' 
+let g:python3_host_prog = '/Users/lynx/.config/nvim/env/bin/python'
 
 " jsx also with .js files
 let g:jsx_ext_required = 0

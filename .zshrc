@@ -45,7 +45,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew docker docker-compose wd)
+plugins=(git brew docker git jsontools docker-compose osx python pip wd)
 
 # User configuration
 
@@ -107,4 +107,7 @@ bindkey -M viins 'jk' vi-cmd-mode
 bindkey '^R' history-incremental-search-backward
 #
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
+# java
+export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Home'
 

@@ -165,3 +165,8 @@ alias devnpms='npm -g install js-beautify eslint babel-eslint eslint-plugin-reac
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+# mc save current dir
+export MC_VER=`mc --version | ag GNU | awk '{print $4}'`
+alias mc=". /usr/local/Cellar/midnight-commander/"$MC_VER"/libexec/mc/mc-wrapper.sh"
+unset MC_VER
