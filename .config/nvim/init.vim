@@ -110,6 +110,7 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
     " Treat .md files as Markdown
     autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+    autocmd BufRead,BufNewFile *.ts setfiletype typescript syntax=typescript
 endif
 
 " disable yaml and text autoindent
@@ -165,6 +166,8 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'rizzatti/dash.vim'
+Plug 'mhartington/nvim-typescript'
+Plug 'HerringtonDarkholme/yats.vim'
 
 "Plug 'scrooloose/syntastic'
 call plug#end()

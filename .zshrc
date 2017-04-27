@@ -109,5 +109,5 @@ bindkey '^R' history-incremental-search-backward
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 # java
-export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Home'
-
+export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home'
+export JAVA_OPTS="-Dhttp.proxySet=true -Dhttp.proxyHost=proxy.reksoft.ru -Dhttp.proxyPort=3128 $JAVA_OPTS"
