@@ -118,8 +118,8 @@ autocmd BufEnter * if &filetype == "yaml" | setlocal nosi inde= | endif
 autocmd BufEnter * if &filetype == "text" | setlocal nosi inde= | endif
 " Check syntax on save and when opening file
 
-autocmd CursorHold,CursorHoldI *.py,*.rb,*.js Neomake
-autocmd BufReadPost,BufWritePost *.py,*.rb,*.js Neomake
+autocmd CursorHold,CursorHoldI *.py,*.rb,*.js,*.ts Neomake
+autocmd BufReadPost,BufWritePost *.py,*.rb,*.js,*.ts Neomake
 
 " auto save and link on exit from insert mode
 " close all buffers and exit (normal mode)
@@ -306,7 +306,7 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_tjump_shortener = ['^/.*rbenv/versions/\d.\d.\d.*/lib/ruby/\(gems/\)\?\d.\d.\d/\|/.*/vendor/ruby/\d.\d.\d/', '.../']
 
 let g:gitgutter_max_signs=5000
-let g:gitgutter_eager=1
+let g:gitguter_eager=1
 let g:gitgutter_realtime=1
 let g:gitgutter_map_keys=0
 let g:gitgutter_sign_column_always= 1
@@ -364,16 +364,15 @@ let g:neomake_place_all_signs=1
 "let g:neomake_python_enabled_makers = ['flake8', 'pyflakes', 'pylint']
 let g:neomake_python_enabled_makers = ['flake8']
 let g:neomake_javascript_enabled_makers=['eslint']
-
+"typescript
+let g:neomake_typescript_enabled_makers = ['tslint']
+let g:neomake_typescript_tslint_maker = {
+    \ 'args': ['%:p'],
+    \ 'errorformat': 'ERROR: %f[%l\, %c]: %m',
+    \ }
+                                                                                                       
 hi NeomakeError   ctermbg=237 guibg=#3c3836 ctermfg=167 guifg=#fb4934
 hi NeomakeWarning ctermbg=237 guibg=#3c3836 ctermfg=172 guifg=#d79921
-
-"let g:syntastic_python_checkers = ['flake8', 'pyflakes', 'pylint']
-"let g:syntastic_aggregate_errors = 1
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
 
 let g:deoplete#enable_at_startup = 1
 " deoplete tab-complete
