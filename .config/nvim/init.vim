@@ -306,7 +306,7 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_tjump_shortener = ['^/.*rbenv/versions/\d.\d.\d.*/lib/ruby/\(gems/\)\?\d.\d.\d/\|/.*/vendor/ruby/\d.\d.\d/', '.../']
 
 let g:gitgutter_max_signs=5000
-let g:gitguter_eager=1
+let g:gitgutter_eager=1
 let g:gitgutter_realtime=1
 let g:gitgutter_map_keys=0
 let g:gitgutter_sign_column_always= 1
