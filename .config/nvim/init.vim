@@ -166,6 +166,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'rizzatti/dash.vim'
 Plug 'mhartington/nvim-typescript'
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'vim-scripts/dbext.vim'
 
 "Plug 'scrooloose/syntastic'
 call plug#end()
@@ -242,15 +243,6 @@ set visualbell
 set t_vb=
 
 map <F9> :NERDTreeToggle<CR>
-
-" show documentation in Dash
-nmap <leader>d <Plug>DashSearch
-nmap <leader>D <Plug>DashGlobalSearch
-
-
-let g:dash_map = {
-      \ 'haml' : ['rails']
-      \ }
 
 let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
@@ -392,7 +384,7 @@ nnoremap K :silent grep! "\b<C-R>=expand("<cword>")<cr>\b"<CR>:cw<CR>:redraw!<cr
 vnoremap K "hy:silent grep! "\b<C-r>h\b"<CR>:cw<CR>:redraw!<cr>
 
 " different cursors for normal and insert mode
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let guicursor=1
 
 " vim-indent-guides
 let g:indent_guides_auto_colors=0
