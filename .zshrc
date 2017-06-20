@@ -49,7 +49,7 @@ plugins=(git brew docker git jsontools docker-compose osx python pip wd)
 
 # User configuration
 
-export PATH="/Users/lynx/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/sbin:/Users/lynx/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
