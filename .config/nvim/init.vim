@@ -166,7 +166,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'rizzatti/dash.vim'
 Plug 'mhartington/nvim-typescript'
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'vim-scripts/dbext.vim'
 
 "Plug 'scrooloose/syntastic'
 call plug#end()
@@ -353,6 +352,10 @@ let g:neomake_place_all_signs=1
 
 "let g:neomake_python_enabled_makers = ['flake8', 'pyflakes', 'pylint']
 let g:neomake_python_enabled_makers = ['flake8']
+"set path to flake8 in neovim's python 3 virtualenv for Neomake
+let g:neomake_python_flake8_maker = {
+  \ 'exe': '/Users/lynx/.config/nvim/env/bin/flake8'
+  \ }
 let g:neomake_javascript_enabled_makers=['eslint']
 "typescript
 let g:neomake_typescript_enabled_makers = ['tslint']
