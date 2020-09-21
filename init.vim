@@ -163,9 +163,10 @@ Plug 'nvie/vim-flake8'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
-Plug 'rizzatti/dash.vim'
 Plug 'mhartington/nvim-typescript'
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 "Plug 'scrooloose/syntastic'
 call plug#end()
@@ -228,7 +229,7 @@ syntax on
 set synmaxcol=120
 syntax sync minlines=256
 
-set grepprg=ag\ -S\ --nogroup\ --nocolor\ --skip-vcs-ignores\ --hidden\ --vimgrep
+set grepprg=rg\ -S\ --nogroup\ --nocolor\ --vimgrep
 set grepformat=%f:%l:%c:%m
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|copen|redraw!
 " searches for the text under the cursor and shows the results in a quickfix window
@@ -272,7 +273,7 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_match_window_reversed = 1
 let g:ctrlp_switch_buffer = '0'
 let g:ctrlp_regexp = 0
-let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
+let g:ctrlp_user_command = 'rg %s -l --nocolor -files -hidden ""'
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_use_caching = 0
 let g:ctrlp_map = '<leader>f'
@@ -304,36 +305,6 @@ let g:gruvbox_invert_selection=0
 let g:gruvbox_bold=0
 let g:gruvbox_terminal_colors = 1
 
-" airline config
-
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-
-let g:airline_theme_patch_func = 'AirlineThemePatch'
-function! AirlineThemePatch(palette)
-  if g:airline_theme == 'gruvbox'
-    for colors in values(a:palette.inactive)
-      let colors[3] = 245
-    endfor
-  endif
-endfunction
-
-" let g:airline_enable_syntastic=1
 " show name of branch
 let g:airline_enable_fugitive=1
 " do not show the number of changed lines
@@ -364,7 +335,7 @@ let g:neomake_typescript_tslint_maker = {
     \ 'args': ['%:p'],
     \ 'errorformat': 'ERROR: %f[%l\, %c]: %m',
     \ }
-                                                                                                       
+
 hi NeomakeError   ctermbg=237 guibg=#3c3836 ctermfg=167 guifg=#fb4934
 hi NeomakeWarning ctermbg=237 guibg=#3c3836 ctermfg=172 guifg=#d79921
 
@@ -398,34 +369,3 @@ let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'text']
 
 hi IndentGuidesOdd  ctermbg=236 guibg=#333333
 hi IndentGuidesEven ctermbg=236 guibg=#363636
-
-let g:terminal_color_0 = "#282828"
-let g:terminal_color_8 = "#928374"
-
-" neurtral_red + bright_red
-let g:terminal_color_1 = "#cc241d"
-let g:terminal_color_9 = "#fb4934"
-
-" neutral_green + bright_green
-let g:terminal_color_2 = "#98971a"
-let g:terminal_color_10 = "#b8bb26"
-
-" neutral_yellow + bright_yellow
-let g:terminal_color_3 = "#d79921"
-let g:terminal_color_11 = "#fabd2f"
-
-" neutral_blue + bright_blue
-let g:terminal_color_4 = "#458588"
-let g:terminal_color_12 = "#83a598"
-
-" neutral_purple + bright_purple
-let g:terminal_color_5 = "#b16286"
-let g:terminal_color_13 = "#d3869b"
-
-" neutral_aqua + faded_aqua
-let g:terminal_color_6 = "#689d6a"
-let g:terminal_color_14 = "#8ec07c"
-
-" light4 + light1
-let g:terminal_color_7 = "#a89984"
-let g:terminal_color_15 = "#ebdbb2"

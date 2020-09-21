@@ -156,16 +156,16 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdtree'
 Plug 'nvie/vim-flake8'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
-Plug 'rizzatti/dash.vim'
 Plug 'mhartington/nvim-typescript'
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 "Plug 'scrooloose/syntastic'
 call plug#end()
@@ -228,7 +228,7 @@ syntax on
 set synmaxcol=120
 syntax sync minlines=256
 
-set grepprg=ag\ -S\ --nogroup\ --nocolor\ --skip-vcs-ignores\ --hidden\ --vimgrep
+set grepprg=rg\ --color=never\ --vimgrep\ --smart-case
 set grepformat=%f:%l:%c:%m
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|copen|redraw!
 " searches for the text under the cursor and shows the results in a quickfix window
@@ -272,7 +272,7 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_match_window_reversed = 1
 let g:ctrlp_switch_buffer = '0'
 let g:ctrlp_regexp = 0
-let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
+let g:ctrlp_user_command = 'rg %s --files --color=never --smart-case --glob ""'
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_use_caching = 0
 let g:ctrlp_map = '<leader>f'
@@ -354,7 +354,7 @@ let g:neomake_place_all_signs=1
 let g:neomake_python_enabled_makers = ['flake8']
 "set path to flake8 in neovim's python 3 virtualenv for Neomake
 let g:neomake_python_flake8_maker = {
-  \ 'exe': '/Users/lynx/.config/nvim/env/bin/flake8'
+  \ 'exe': '/home/lynx/.config/nvim/env/bin/flake8'
   \ }
 let g:neomake_javascript_enabled_makers=['eslint']
 "typescript
@@ -363,7 +363,7 @@ let g:neomake_typescript_tslint_maker = {
     \ 'args': ['%:p'],
     \ 'errorformat': 'ERROR: %f[%l\, %c]: %m',
     \ }
-                                                                                                       
+
 hi NeomakeError   ctermbg=237 guibg=#3c3836 ctermfg=167 guifg=#fb4934
 hi NeomakeWarning ctermbg=237 guibg=#3c3836 ctermfg=172 guifg=#d79921
 
@@ -371,8 +371,8 @@ let g:deoplete#enable_at_startup = 1
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-let g:python_host_prog = '/Users/lynx/.config/nvim/env2/bin/python' 
-let g:python3_host_prog = '/Users/lynx/.config/nvim/env/bin/python'
+let g:python_host_prog = '/home/lynx/.config/nvim/env2/bin/python' 
+let g:python3_host_prog = '/home/lynx/.config/nvim/env/bin/python'
 
 " jsx also with .js files
 let g:jsx_ext_required = 0
@@ -397,36 +397,4 @@ let g:indent_guides_guide_size=1
 let g:indent_guides_start_level=2
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'text']
 
-hi IndentGuidesOdd  ctermbg=236 guibg=#333333
-hi IndentGuidesEven ctermbg=236 guibg=#363636
-
-let g:terminal_color_0 = "#282828"
-let g:terminal_color_8 = "#928374"
-
-" neurtral_red + bright_red
-let g:terminal_color_1 = "#cc241d"
-let g:terminal_color_9 = "#fb4934"
-
-" neutral_green + bright_green
-let g:terminal_color_2 = "#98971a"
-let g:terminal_color_10 = "#b8bb26"
-
-" neutral_yellow + bright_yellow
-let g:terminal_color_3 = "#d79921"
-let g:terminal_color_11 = "#fabd2f"
-
-" neutral_blue + bright_blue
-let g:terminal_color_4 = "#458588"
-let g:terminal_color_12 = "#83a598"
-
-" neutral_purple + bright_purple
-let g:terminal_color_5 = "#b16286"
-let g:terminal_color_13 = "#d3869b"
-
-" neutral_aqua + faded_aqua
-let g:terminal_color_6 = "#689d6a"
-let g:terminal_color_14 = "#8ec07c"
-
-" light4 + light1
-let g:terminal_color_7 = "#a89984"
-let g:terminal_color_15 = "#ebdbb2"
+command! LS call fzf#run(fzf#wrap({'source': 'ls'}))
