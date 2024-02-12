@@ -166,6 +166,7 @@ Plug 'mhartington/nvim-typescript'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
 "Plug 'scrooloose/syntastic'
 call plug#end()
@@ -398,3 +399,5 @@ let g:indent_guides_start_level=2
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'text']
 
 command! LS call fzf#run(fzf#wrap({'source': 'ls'}))
+
+lua require('alpha')
