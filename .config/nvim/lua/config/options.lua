@@ -3,7 +3,6 @@
 -- Add any additional options here
 --
 return {
-
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
