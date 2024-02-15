@@ -27,3 +27,4 @@ vim.cmd([[
 local map = vim.keymap.set
 --
 map({ "i" }, "jk", "<esc>", { desc = "Escape" })
+map({ "n" }, "<leader>sx", require("telescope.builtin").resume, { desc = "Resume" })

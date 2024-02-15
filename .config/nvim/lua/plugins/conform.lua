@@ -18,7 +18,7 @@ return {
     -- Define your formatters
     formatters_by_ft = {
       lua = { "stylua" },
-      python = { "isort", "black" },
+      python = { "isort", "black", "mypy", "ruff" },
       --javascript = { { "prettierd", "prettier" } },
     },
     -- Customize formatters
