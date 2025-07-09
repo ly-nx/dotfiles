@@ -43,3 +43,5 @@ function git() {
 		command git "$@"
 	fi
 }
+
+export XDG_RUNTIME_DIR=$HOME/.cache/
