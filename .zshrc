@@ -110,6 +110,6 @@ function git() {
   fi
 }
 
-alias mc='source /usr/lib/mc/mc-wrapper.sh'
+alias mc='source /usr/libexec/mc/mc-wrapper.sh'
 
 export XDG_RUNTIME_DIR=$HOME/.cache/
