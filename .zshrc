@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete fzf-dir-navigator zsh-vi-mode)
+plugins=(git tmux zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete fzf-dir-navigator)
 
 ZSH_TMUX_AUTOSTART=true
 
@@ -104,6 +104,7 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
 #
 
 alias cat="bat --theme=base16"
@@ -141,4 +142,3 @@ source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugi
 source $ZSH_CUSTOM/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 alias mirrors="sudo reflector --verbose --latest 5 --country 'United States' --age 6 --sort rate --save /etc/pacman.d/mirrorlist"
-
