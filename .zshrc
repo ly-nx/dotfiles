@@ -112,6 +112,8 @@ alias ls='exa'
 alias ll='exa -l'
 alias lla='exa -la'
 alias sd="cd ~ && cd \$(find * -type d | fzf)"
+alias mc='source /usr/lib/mc/mc-wrapper.sh'
+
 set -o vi
 
 export ELECTRON_OZONE_PLATFORM_HINT=auto
