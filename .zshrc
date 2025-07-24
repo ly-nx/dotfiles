@@ -108,9 +108,9 @@ fi
 #
 
 alias cat="bat --theme=base16"
-alias ls='exa'
-alias ll='exa -l'
-alias lla='exa -la'
+alias ls='eza'
+alias ll='eza -l'
+alias lla='eza -la'
 alias sd="cd ~ && cd \$(find * -type d | fzf)"
 alias mc='source /usr/lib/mc/mc-wrapper.sh'
 
