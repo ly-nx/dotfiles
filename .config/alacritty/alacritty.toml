@@ -38,7 +38,7 @@ bold = { family = "IosevkaTerm Nerd Font Mono", style = "Bold" }
 italic = { family = "IosevkaTerm Nerd Font Mono", style = "Italic" }
 bold_italic = { family = "IosevkaTerm Nerd Font Mono", style = "Bold Italic" }
 
-size = 12.0
+size = 11.0
 
 [terminal]
 shell = { program = "/bin/bash", args = ["--login"] }
