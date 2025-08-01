@@ -83,6 +83,31 @@
   "hyprland/workspaces": {
     "on-scroll-up": "hyprctl dispatch workspace -1",
     "on-scroll-down": "hyprctl dispatch workspace +1",
+		"format": "{icon}",
+      "format-icons": {
+          "1": "一",
+          "2": "二",
+          "3": "三",
+          "4": "四",
+          "5": "五",
+          "6": "六",
+          "7": "七",
+          "8": "八",
+          "9": "九",
+          "10": "十",
+          "11": "一",
+          "12": "二",
+          "13": "三",
+          "14": "四",
+          "15": "五",
+          "16": "六",
+          "17": "七",
+          "18": "八",
+          "19": "九",
+          "20": "十",
+          "urgent": "零",
+          "default": "d"
+      },
     "persistent-workspaces": {
       "1": [],
       "2": [],
@@ -268,7 +293,7 @@
   // ───────────────────────────────────────────────────────────────┤ date ├───
 
   "clock#date": {
-    "format": "󰸗 {:%d-%m}",
+    "format": "󰸗 {:%m-%d}",
     "tooltip-format": "<tt>{calendar}</tt>",
 
     "calendar": {
