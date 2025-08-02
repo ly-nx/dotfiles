@@ -280,9 +280,14 @@
     "start-activated": false
   },
 
+  "clock": {
+		"locale": "ru_RU.UTF-8"
+	},
+
   // ───────────────────────────────────────────────────────────────┤ time ├───
 
   "clock#time": {
+		"locale": "ru_RU.UTF-8",
     "format": "{:%H:%M}",
     "tooltip": false,
     // "tooltip-format": "Standard Time: {:%I:%M %p}",
@@ -293,7 +298,8 @@
   // ───────────────────────────────────────────────────────────────┤ date ├───
 
   "clock#date": {
-    "format": "󰸗 {:%m-%d}",
+		"locale": "ru_RU.UTF-8",
+    "format": "󰸗 {:%d-%m}",
     "tooltip-format": "<tt>{calendar}</tt>",
 
     "calendar": {
